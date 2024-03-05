@@ -13,6 +13,10 @@
         <div class="card-body">
             <h5 class="card-title">@item.Name</h5>
             <p class="card-text">@item.Description</p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Company" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Delete?')">Delete</a>
+            }
         </div>
     </div>
 }
