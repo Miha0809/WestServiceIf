@@ -8,27 +8,48 @@ using WestServiceIf.Services;
 
 namespace WestServiceIf.Controllers;
 
+[Authorize]
 public class CompanyController(WSIDbContext context) : Controller
 {
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> Companies()
     {
         return View(await context.Companies.ToListAsync());
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Add()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Add(Company company)
+    {
+        if (company is null)
+        {
+            return View(company);
+        }
+
+        await context.Companies.AddAsync(company);
+        await context.SaveChangesAsync();
+
+        return RedirectToAction("Companies");
+    }
     
-    [Authorize]
-    [HttpDelete]
-    public async Task<IActionResult> Delete(int? id)
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
     {
         var company = await context.Companies.FindAsync(id);
         
-        if (id is null || company is null)
+        if (company is null)
         {
             return Error();
         }
                 
         context.Companies.Remove(company);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
 
         return RedirectToAction("Companies");
     }
