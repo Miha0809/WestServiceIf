@@ -1,0 +1,18 @@
+@model List<Product>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+@foreach(var item in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@item.Title</h5>
+            <p class="card-text">@item.Description</p>
+            <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Details</a>
+        </div>
+    </div>
+}
