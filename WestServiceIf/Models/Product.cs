@@ -12,4 +12,6 @@ public class Product
 
     [StringLength(int.MaxValue, MinimumLength = 1)]
     public required string Description { get; set; }
+    
+    public virtual List<Image>? Images { get; set; }
 }

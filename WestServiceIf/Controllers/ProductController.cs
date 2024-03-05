@@ -7,20 +7,21 @@ using WestServiceIf.Services;
 
 namespace WestServiceIf.Controllers;
 
-public class ProductController(WSIDbContext context) : Controller
+public class ProductController(WSIDbContext context, IWebHostEnvironment appEnvironment) : Controller
 {
     [HttpGet]
     public async Task<IActionResult> Products()
     {
-        return View(await context.Products.OrderBy(p => p.Id).ToListAsync());
+        var producs = await context.Products.OrderBy(p => p.Id).ToListAsync();
+        return View(producs);
     }
 
     [HttpGet]
-    public async Task<IActionResult> Details(int? id)
+    public async Task<IActionResult> Details(int id)
     {
-        if (id is null && !IsExists(id))
+        if (!ProductExists(id))
         {
-            return Error();
+            return View("Products");
         }
 
         var product = await context.Products.FirstOrDefaultAsync(product => product.Id.Equals(id));
@@ -37,16 +38,29 @@ public class ProductController(WSIDbContext context) : Controller
 
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> Add(Product product)
+    public async Task<IActionResult> Add(Product product, List<IFormFile> images)
     {
-        if (product is not null)
+        if (ModelState.IsValid && product is not null)
         {
-            await context.Products.AddAsync(product);
-            await context.SaveChangesAsync();
+            foreach (var imageFile in images)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await imageFile.CopyToAsync(memoryStream);
+                    var image = new Image
+                    {
+                        FileName = imageFile.FileName,
+                        ImageData = memoryStream.ToArray()
+                    };
+                    product.Images.Add(image);
+                }
+            }
 
-            return RedirectToAction("Products");
+            context.Products.Add(product);
+            await context.SaveChangesAsync();
+            return RedirectToAction(nameof(Products));
         }
-        
+
         return Error();
     }
 
@@ -54,7 +68,7 @@ public class ProductController(WSIDbContext context) : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-        if (!IsExists(id))
+        if (!ProductExists(id))
         {
             return Error();
         }
@@ -64,22 +78,76 @@ public class ProductController(WSIDbContext context) : Controller
 
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> Edit(Product product)
+    public async Task<IActionResult> Edit(Product model,  List<IFormFile> newImages, List<int> deleteImages)
     {
-        if (product is null)
+        if (model is null)
         {
             return Error();
         }
+        
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                var product = await context.Products.Include(p => p.Images).FirstOrDefaultAsync(p => p.Id.Equals(model.Id));
+                if (product == null)
+                {
+                    return NotFound();
+                }
 
-        context.Products.Update(product);
-        await context.SaveChangesAsync();
+                product.Title = model.Title;
 
-        return RedirectToAction("Products");
+                if (newImages != null && newImages.Any())
+                {
+                    foreach (var file in newImages)
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await file.CopyToAsync(memoryStream);
+                            var image = new Image()
+                            {
+                                FileName = file.FileName,
+                                ImageData = memoryStream.ToArray()
+                            };
+                            product.Images.Add(image);
+                        }
+                    }
+                }
+
+                if (deleteImages != null && deleteImages.Any())
+                {
+                    foreach (var imageId in deleteImages)
+                    {
+                        var imageToRemove = product.Images.FirstOrDefault(img => img.Id == imageId);
+                        if (imageToRemove != null)
+                        {
+                            product.Images.Remove(imageToRemove);
+                        }
+                    }
+                }
+
+                context.Update(product);
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(model.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Products));
+        }
+        return View(model);
     }
 
-    private bool IsExists(int? id)
+    private bool ProductExists(int id)
     {
-        return context.Products.Find(id) != null;
+        return context.Products.Any(e => e.Id == id);
     }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
