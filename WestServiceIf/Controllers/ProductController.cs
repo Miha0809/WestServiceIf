@@ -50,6 +50,33 @@ public class ProductController(WSIDbContext context) : Controller
         return Error();
     }
 
+    [Authorize]
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        if (!IsExists(id))
+        {
+            return Error();
+        }
+        
+        return View(await context.Products.FindAsync(id));
+    }
+
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> Edit(Product product)
+    {
+        if (product is null)
+        {
+            return Error();
+        }
+
+        context.Products.Update(product);
+        await context.SaveChangesAsync();
+
+        return RedirectToAction("Products");
+    }
+
     private bool IsExists(int? id)
     {
         return context.Products.Find(id) != null;
