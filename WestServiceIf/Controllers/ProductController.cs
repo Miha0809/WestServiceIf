@@ -19,6 +19,8 @@ public class ProductController(WSIDbContext context, IWebHostEnvironment appEnvi
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
+        var a = ProductExists(id);
+        
         if (!ProductExists(id))
         {
             return View("Products");
@@ -89,13 +91,15 @@ public class ProductController(WSIDbContext context, IWebHostEnvironment appEnvi
         {
             try
             {
-                var product = await context.Products.Include(p => p.Images).FirstOrDefaultAsync(p => p.Id.Equals(model.Id));
+                var product = await context.Products.FindAsync(model.Id);
+                
                 if (product == null)
                 {
                     return NotFound();
                 }
 
                 product.Title = model.Title;
+                product.Description = model.Description;
 
                 if (newImages != null && newImages.Any())
                 {
@@ -140,14 +144,16 @@ public class ProductController(WSIDbContext context, IWebHostEnvironment appEnvi
                     throw;
                 }
             }
+            
             return RedirectToAction(nameof(Products));
         }
+        
         return View(model);
     }
 
     private bool ProductExists(int id)
     {
-        return context.Products.Any(e => e.Id == id);
+        return context.Products.Any(p => p.Id.Equals(id));
     }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
