@@ -25,23 +25,33 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Products">Products</a>
+                    </li>
                 </ul>
             </div>
              <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
-                <ul class="navbar-nav flex-grow-end">
-                    @if (!User.Identity!.IsAuthenticated)
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Authorization" asp-action="Login">Login</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Authorization" asp-action="Logout">Logout</a>
-                        </li>
-                    }
-                </ul>
+                 <ul class="navbar-nav flex-grow-end">
+                     @if (User.Identity!.IsAuthenticated)
+                     {
+                         <li class="nav-item">
+                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Add">Add Product</a>
+                         </li>
+                     }
+                     
+                     @if (!User.Identity!.IsAuthenticated)
+                     {
+                         <li class="nav-item">
+                             <a class="nav-link text-dark" asp-area="" asp-controller="Authorization" asp-action="Login">Login</a>
+                         </li>
+                     }
+                     else
+                     {
+                         <li class="nav-item">
+                             <a class="nav-link text-dark" asp-area="" asp-controller="Authorization" asp-action="Logout">Logout</a>
+                         </li>
+                     }
+                 </ul>
             </div>
         </div>
     </nav>

@@ -1,0 +1,21 @@
+@model List<Product>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+@foreach(var item in Model)
+{
+    <div class="card" style="width: 18rem;">
+        @if (item.Images != null && item.Images.Count > 0)
+        {
+            <img src="data:image;base64,@(Convert.ToBase64String(@item.Images[0].ImageData))" alt="@item.Images[0].FileName" />
+        }
+        <div class="card-body">
+            <h5 class="card-title">@item.Title</h5>
+            <p class="card-text">@item.Description</p>
+            <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Details</a>
+        </div>
+    </div>
+}

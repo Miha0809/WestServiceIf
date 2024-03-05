@@ -57,6 +57,9 @@ using (var scope = app.Services.CreateScope())
         
         await userManager.CreateAsync(user, password);
     }
+    else
+    {
+    }
 }
 
 app.Run();
