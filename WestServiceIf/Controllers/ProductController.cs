@@ -12,7 +12,7 @@ public class ProductController(WSIDbContext context) : Controller
     [HttpGet]
     public async Task<IActionResult> Products()
     {
-        return View(await context.Products.ToListAsync());
+        return View(await context.Products.OrderBy(p => p.Id).ToListAsync());
     }
 
     [HttpGet]
@@ -26,6 +26,28 @@ public class ProductController(WSIDbContext context) : Controller
         var product = await context.Products.FirstOrDefaultAsync(product => product.Id.Equals(id));
 
         return View(product);
+    }
+
+    [Authorize]
+    [HttpGet]
+    public async Task<IActionResult> Add()
+    {
+        return View();
+    }
+
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> Add(Product product)
+    {
+        if (product is not null)
+        {
+            await context.Products.AddAsync(product);
+            await context.SaveChangesAsync();
+
+            return RedirectToAction("Products");
+        }
+        
+        return Error();
     }
 
     private bool IsExists(int? id)
