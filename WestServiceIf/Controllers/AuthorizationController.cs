@@ -21,10 +21,16 @@ public class AuthorizationController(SignInManager<IdentityUser> signInManager) 
         
         if (result.Succeeded)
         {
-            return RedirectToAction();
+            return RedirectToAction(); // TODO: Redirect
         }
 
         return RedirectToAction("Error");
+    }
+
+    public async Task<IActionResult> Logout()
+    {
+        Response.Cookies.Delete(".AspNetCore.Identity.Application");
+        return RedirectToAction("Index", "Home");
     }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
