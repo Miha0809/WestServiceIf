@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WestServiceIf.Models;
@@ -27,6 +28,7 @@ public class AuthorizationController(SignInManager<IdentityUser> signInManager) 
         return RedirectToAction("Error");
     }
 
+    [Authorize]
     public async Task<IActionResult> Logout()
     {
         Response.Cookies.Delete(".AspNetCore.Identity.Application");
