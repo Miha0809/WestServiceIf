@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,42 +6,41 @@ using WestServiceIf.Services;
 
 namespace WestServiceIf.Controllers;
 
-public class ProductController(WSIDbContext context, IWebHostEnvironment appEnvironment) : Controller
+[Authorize]
+public class ProductController(WSIDbContext context) : Controller
 {
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> Products()
     {
-        var producs = await context.Products.OrderBy(p => p.Id).ToListAsync();
-        return View(producs);
+        var products = await context.Products.OrderBy(p => p.Id).ToListAsync();
+        return View(products);
     }
-
+    
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
-        var a = ProductExists(id);
-        
-        if (!ProductExists(id))
-        {
-            return View("Products");
-        }
-
         var product = await context.Products.FirstOrDefaultAsync(product => product.Id.Equals(id));
+
+        if (ValidateCompanyOnError(product))
+        {
+            return NotFound($"Продукта з id {id} не існує");
+        }
 
         return View(product);
     }
 
-    [Authorize]
     [HttpGet]
     public async Task<IActionResult> Add()
     {
         return View();
     }
-
-    [Authorize]
+    
     [HttpPost]
     public async Task<IActionResult> Add(Product product, List<IFormFile> images)
     {
-        if (ModelState.IsValid && product is not null)
+        if (ModelState.IsValid && ValidateCompanyOnError(product))
         {
             foreach (var imageFile in images)
             {
@@ -63,28 +61,28 @@ public class ProductController(WSIDbContext context, IWebHostEnvironment appEnvi
             return RedirectToAction(nameof(Products));
         }
 
-        return Error();
+        return NotFound("Назва продукта або опис пусті");
     }
 
-    [Authorize]
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-        if (!ProductExists(id))
+        var product = await context.Products.FindAsync(id);
+        
+        if (ValidateCompanyOnError(product))
         {
-            return Error();
+            return NotFound($"Продукта з id {id} не існує");
         }
         
-        return View(await context.Products.FindAsync(id));
+        return View(product);
     }
 
-    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Edit(Product model,  List<IFormFile> newImages, List<int> deleteImages)
     {
-        if (model is null)
+        if (ValidateCompanyOnError(model))
         {
-            return Error();
+            return NotFound("Назва продукта або опис пусті");
         }
         
         if (ModelState.IsValid)
@@ -145,20 +143,36 @@ public class ProductController(WSIDbContext context, IWebHostEnvironment appEnvi
                 }
             }
             
-            return RedirectToAction(nameof(Products));
+            return RedirectToAction("Products");
         }
         
         return View(model);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var product = await context.Products.FindAsync(id);
+        
+        if (ValidateCompanyOnError(product))
+        {
+            return NotFound("Назва продукта або опис пусті");
+        }
+                
+        context.Products.Remove(product!);
+        await context.SaveChangesAsync();
+
+        return RedirectToAction("Products");
+    }
+
+    private bool ValidateCompanyOnError(Product? product)
+    {
+        return product is null || string.IsNullOrWhiteSpace(product.Title) ||
+               string.IsNullOrWhiteSpace(product.Description);
+    }
+    
     private bool ProductExists(int id)
     {
         return context.Products.Any(p => p.Id.Equals(id));
-    }
-    
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
