@@ -7,12 +7,12 @@
 
 <form asp-controller="Authorization" asp-action="Login" method="post" class="border p-4">
     <div class="mb-3">
-        <label asp-for="Email" class="form-label">Email address</label>
-        <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label asp-for="Email" class="form-label">Електронна пошта</label>
+        <input type="email" asp-for="Email" class="form-control">
     </div>
     <div class="mb-3">
-        <label asp-for="Password" class="form-label">Password</label>
-        <input type="password" asp-for="Password" class="form-control" id="exampleInputPassword1">
+        <label asp-for="Password" class="form-label">Пароль</label>
+        <input type="password" asp-for="Password" class="form-control">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Ввійти</button>
 </form>
