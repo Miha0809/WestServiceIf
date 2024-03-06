@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using System.Runtime.InteropServices.JavaScript;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +13,8 @@ public class CompanyController(WSIDbContext context) : Controller
     [HttpGet]
     public async Task<IActionResult> Companies()
     {
-        return View(await context.Companies.ToListAsync());
+        var companies = await context.Companies.ToListAsync();
+        return View(companies);
     }
 
     [HttpGet]
@@ -27,9 +26,9 @@ public class CompanyController(WSIDbContext context) : Controller
     [HttpPost]
     public async Task<IActionResult> Add(Company company)
     {
-        if (company is null)
+        if (ValidateCompanyOnError(company))
         {
-            return View(company);
+            return NotFound("Назва або опис компанії пустий");
         }
 
         await context.Companies.AddAsync(company);
@@ -39,13 +38,44 @@ public class CompanyController(WSIDbContext context) : Controller
     }
     
     [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var company = await context.Companies.FindAsync(id);
+        
+        if (ValidateCompanyOnError(company))
+        {
+            return NotFound($"Компанію з id {id} не існує");
+        }
+        
+        return View(company);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(Company company)
+    {
+        if (ValidateCompanyOnError(company))
+        {
+            return NotFound("Назва або опис компанії пусті");
+        }
+        
+        if (ModelState.IsValid)
+        {
+            context.Companies.Update(company);
+            await context.SaveChangesAsync();
+            return RedirectToAction("Companies");
+        }
+        
+        return View(company);
+    }
+    
+    [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
         var company = await context.Companies.FindAsync(id);
         
-        if (company is null)
+        if (ValidateCompanyOnError(company))
         {
-            return Error();
+            return NotFound("Компанія не знайдена");
         }
                 
         context.Companies.Remove(company);
@@ -54,9 +84,9 @@ public class CompanyController(WSIDbContext context) : Controller
         return RedirectToAction("Companies");
     }
     
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    private bool ValidateCompanyOnError(Company? company)
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return company is null || string.IsNullOrWhiteSpace(company.Description) ||
+               string.IsNullOrWhiteSpace(company.Name);
     }
 }

@@ -1,37 +1,57 @@
 @model Product
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Добавити Продукт";
     Layout = "_Layout";
 }
 
-<h2>Product add</h2>
-
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Add" method="post" enctype="multipart/form-data">
+    <div class="col-md-8">
+        <form asp-controller="Product" asp-action="Add" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <div class="mb-3">
+                    <label asp-for="Title" class="control-label">Заголовок</label>
+                    <input asp-for="Title" class="form-control"/>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="mb-3">
+                    <label asp-for="Description" class="control-label">Опис товару</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary">
+                            Обрати файли<input type="file" asp-for="Images" class="form-control-file" multiple style="display: none;" onchange="updateFileCount(this)" />
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" readonly />
+                </div>
             </div>
-            <div class="form-group">
-                <input type="file" asp-for="Images" class="form-control-file" multiple />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group text-center mt-3">
+                <input type="submit" value="Добавити" class="btn btn-primary" />
+                <a asp-controller="Product" asp-action="Products" class="btn btn-secondary">Вернутись до продуктів</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-area="" asp-controller="Product" asp-action="Products">Back to List</a>
-</div>
+<script>
+    function updateFileCount(input) {
+        var fileCount = input.files.length;
+        var fileName = input.files[0].name; // Якщо потрібно показувати ім'я першого файлу
+
+        var displayText = fileCount > 0 ? fileCount + ' файлів обрано' : 'Обрати файли';
+        if (fileCount === 1) {
+            displayText = fileName; // Якщо потрібно показувати ім'я першого файлу
+        }
+
+        $(input).closest('.input-group').find('input[type="text"]').val(displayText);
+    }
+</script>

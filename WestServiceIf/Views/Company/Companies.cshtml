@@ -1,22 +1,25 @@
 @model List<Company>
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Компанії";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
-
-@foreach (var item in Model)
-{
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">@item.Name</h5>
-            <p class="card-text">@item.Description</p>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a asp-controller="Company" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Delete?')">Delete</a>
-            }
-        </div>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+                <p class="card-text">@item.Description</p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="btn btn-primary" asp-controller="Company" asp-action="Edit" asp-route-id="@item.Id">Редагувати</a>
+                    <a class="btn btn-primary" asp-controller="Company" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Delete?')">Видалити</a>
+                }
+              </div>
+            </div>
+        }
     </div>
-}
+</div>

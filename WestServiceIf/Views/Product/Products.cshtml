@@ -1,21 +1,47 @@
 @model List<Product>
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Деталі";
     Layout = "_Layout";
 }
 
-@foreach(var item in Model)
-{
-    <div class="card" style="width: 18rem;">
-        @if (item.Images != null && item.Images.Count > 0)
+<style>
+    .no-image {
+        background-color: #ccc; /* Сірий фон */
+        height: 60%; /* Висота контейнера для відображення сірого фону */
+        display: flex; /* Використовуємо flexbox для вирівнювання по центру */
+        justify-content: center; /* Вирівнюємо по горизонталі по центру */
+        align-items: center; /* Вирівнюємо по вертикалі по центру */
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
         {
-            <img src="data:image;base64,@(Convert.ToBase64String(@item.Images[0].ImageData))" alt="@item.Images[0].FileName" />
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card d-flex" style="height: 350px;">
+                    @if (item.Images != null && item.Images.Count > 0)
+                    {
+                        <img src="data:image;base64,@(Convert.ToBase64String(item.Images[0].ImageData))" alt="@item.Images[0].FileName" class="card-img-top img-fluid" style="object-fit: cover; height: 200px;">
+                    }
+                    else
+                    {
+                        <div class="no-image d-flex justify-content-center align-items-center">
+                            <p>Картинки немає</p>
+                        </div>
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.Description</p>
+                        <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Деталі</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="btn btn-primary" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Delete?')">Видалити</a>
+                        }
+                    </div>
+                </div>
+            </div>
         }
-        <div class="card-body">
-            <h5 class="card-title">@item.Title</h5>
-            <p class="card-text">@item.Description</p>
-            <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Details</a>
-        </div>
     </div>
-}
+</div>

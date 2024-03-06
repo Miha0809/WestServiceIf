@@ -5,49 +5,77 @@
     Layout = "_Layout";
 }
 
-<h2>Edit Product</h2>
 
-<form asp-controller="Product" asp-action="Edit" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="Id" />
-    
-    <div class="form-group">
-        <label asp-for="Title" class="control-label"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
-    
-    <div class="form-group">
-        <label asp-for="Description" class="control-label"></label>
-        <input asp-for="Description" class="form-control" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label>Existing Images:</label>
-        @if (Model.Images != null && Model.Images.Any())
-        {
-            foreach (var image in Model.Images)
-            {
-                <div>
-                    <img src="data:image;base64,@(Convert.ToBase64String(image.ImageData))" alt="@image.FileName" />
-                    <input type="checkbox" name="deleteImages" value="@image.Id" /> Delete
+<div class="row">
+    <div class="col-md-8">
+        <form asp-controller="Product" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <div class="mb-3">
+                    <label asp-for="Title" class="control-label">Назва деталі</label>
+                    <input asp-for="Title" class="form-control"/>
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
-            }
-        }
-        else
-        {
-            <p>No images available</p>
-        }
+            </div>
+            
+            <div class="form-group">
+                <div class="mb-3">
+                    <label asp-for="Description" class="control-label">Опис деталі</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @if (Model.Images != null && Model.Images.Any())
+                {
+                    foreach (var image in Model.Images)
+                    {
+                        <div class="mb-3">
+                            <img src="data:image;base64,@(Convert.ToBase64String(image.ImageData))" alt="@image.FileName" class="img-fluid" />
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="@($"deleteImage_{image.Id}")" name="deleteImages" value="@image.Id" />
+                                <label class="form-check-label" for="@($"deleteImage_{image.Id}")"> Видалити</label>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No images available</p>
+                }
+            </div>
+            
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary">
+                            Обрати файли<input type="file" asp-for="Images" class="form-control-file" multiple style="display: none;" onchange="updateFileCount(this)" />
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" readonly />
+                </div>
+            </div>
+            
+            <div class="form-group text-center mt-3">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+                <a asp-controller="Product" asp-action="Products" class="btn btn-secondary">Вернутись до компаній</a>
+            </div>
+        </form>
     </div>
-
-    <div class="form-group">
-        <label>Add New Images:</label>
-        <input type="file" name="newImages" multiple />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-</form>
-
-<div>
-    <a asp-area="" asp-controller="Product" asp-action="Products">Back to List</a>
 </div>
+
+<script>
+    function updateFileCount(input) {
+        var fileCount = input.files.length;
+        var fileName = input.files[0].name; // Якщо потрібно показувати ім'я першого файлу
+
+        var displayText = fileCount > 0 ? fileCount + ' файлів обрано' : 'Обрати файли';
+        if (fileCount === 1) {
+            displayText = fileName; // Якщо потрібно показувати ім'я першого файлу
+        }
+
+        $(input).closest('.input-group').find('input[type="text"]').val(displayText);
+    }
+</script>
