@@ -6,17 +6,6 @@
 }
 
 <style>
-    .custom-card {
-        width: 400px; /* Фіксована ширина картки */
-        height: 350px; /* Фіксована висота картки */
-    }
-
-    .custom-card img {
-        width: 100%; /* Зображення буде займати всю ширину контейнера */
-        height: 60%; /* Висота зображення займе 60% від висоти карточки */
-        object-fit: cover; /* Зображення буде зберігати пропорції і обрізатися за потреби */
-    }
-    
     .no-image {
         background-color: #ccc; /* Сірий фон */
         height: 60%; /* Висота контейнера для відображення сірого фону */
@@ -31,14 +20,14 @@
         @foreach (var item in Model)
         {
             <div class="col-12 col-md-4 mb-4">
-                <div class="card custom-card">
+                <div class="card d-flex" style="height: 350px;">
                     @if (item.Images != null && item.Images.Count > 0)
                     {
-                        <img src="data:image;base64,@(Convert.ToBase64String(item.Images[0].ImageData))" alt="@item.Images[0].FileName" class="card-img-top" />
+                        <img src="data:image;base64,@(Convert.ToBase64String(item.Images[0].ImageData))" alt="@item.Images[0].FileName" class="card-img-top img-fluid" style="object-fit: cover; height: 200px;">
                     }
                     else
                     {
-                        <div class="no-image">
+                        <div class="no-image d-flex justify-content-center align-items-center">
                             <p>Картинки немає</p>
                         </div>
                     }
