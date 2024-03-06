@@ -1,7 +1,7 @@
 @model List<Product>
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Деталі";
     Layout = "_Layout";
 }
 
@@ -20,6 +20,9 @@
     .no-image {
         background-color: #ccc; /* Сірий фон */
         height: 60%; /* Висота контейнера для відображення сірого фону */
+        display: flex; /* Використовуємо flexbox для вирівнювання по центру */
+        justify-content: center; /* Вирівнюємо по горизонталі по центру */
+        align-items: center; /* Вирівнюємо по вертикалі по центру */
     }
 </style>
 
@@ -35,15 +38,17 @@
                     }
                     else
                     {
-                        <div class="no-image"></div>
+                        <div class="no-image">
+                            <p>Картинки немає</p>
+                        </div>
                     }
                     <div class="card-body">
                         <h5 class="card-title">@item.Title</h5>
                         <p class="card-text">@item.Description</p>
-                        <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Деталі</a>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class="btn btn-primary" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Delete?')">Delete</a>
+                            <a class="btn btn-primary" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Delete?')">Видалити</a>
                         }
                     </div>
                 </div>
