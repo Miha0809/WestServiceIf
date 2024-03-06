@@ -5,17 +5,49 @@
     Layout = "_Layout";
 }
 
-@foreach(var item in Model)
-{
-    <div class="card" style="width: 18rem;">
-        @if (item.Images != null && item.Images.Count > 0)
+<style>
+    .custom-card {
+        width: 400px; /* Фіксована ширина картки */
+        height: 350px; /* Фіксована висота картки */
+    }
+
+    .custom-card img {
+        width: 100%; /* Зображення буде займати всю ширину контейнера */
+        height: 60%; /* Висота зображення займе 60% від висоти карточки */
+        object-fit: cover; /* Зображення буде зберігати пропорції і обрізатися за потреби */
+    }
+    
+    .no-image {
+        background-color: #ccc; /* Сірий фон */
+        height: 60%; /* Висота контейнера для відображення сірого фону */
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
         {
-            <img src="data:image;base64,@(Convert.ToBase64String(@item.Images[0].ImageData))" alt="@item.Images[0].FileName" />
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card custom-card">
+                    @if (item.Images != null && item.Images.Count > 0)
+                    {
+                        <img src="data:image;base64,@(Convert.ToBase64String(item.Images[0].ImageData))" alt="@item.Images[0].FileName" class="card-img-top" />
+                    }
+                    else
+                    {
+                        <div class="no-image"></div>
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">@item.Description</p>
+                        <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="btn btn-primary" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Delete?')">Delete</a>
+                        }
+                    </div>
+                </div>
+            </div>
         }
-        <div class="card-body">
-            <h5 class="card-title">@item.Title</h5>
-            <p class="card-text">@item.Description</p>
-            <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Details</a>
-        </div>
     </div>
-}
+</div>
