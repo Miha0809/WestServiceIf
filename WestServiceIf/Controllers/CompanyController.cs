@@ -38,6 +38,37 @@ public class CompanyController(WSIDbContext context) : Controller
     }
     
     [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var company = await context.Companies.FindAsync(id);
+        
+        if (ValidateCompanyOnError(company))
+        {
+            return NotFound($"Компанію з id {id} не існує");
+        }
+        
+        return View(company);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(Company company)
+    {
+        if (ValidateCompanyOnError(company))
+        {
+            return NotFound("Назва або опис компанії пусті");
+        }
+        
+        if (ModelState.IsValid)
+        {
+            context.Companies.Update(company);
+            await context.SaveChangesAsync();
+            return RedirectToAction("Companies");
+        }
+        
+        return View(company);
+    }
+    
+    [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
         var company = await context.Companies.FindAsync(id);

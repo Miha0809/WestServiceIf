@@ -1,0 +1,32 @@
+@model Company
+
+@{
+    ViewBag.Title = "Редагування Компанії";
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-controller="Company" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="mb-3">
+                    <label asp-for="Name" class="control-label">Назва компанії</label>
+                    <input asp-for="Name" class="form-control"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="mb-3">
+                    <label asp-for="Description" class="control-label">Опис компанії</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group text-center mt-3">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+                <a asp-controller="Company" asp-action="Companies" class="btn btn-secondary">Вернутись до компаній</a>
+            </div>
+        </form>
+    </div>
+</div>
