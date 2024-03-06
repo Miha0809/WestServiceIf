@@ -1,15 +1,18 @@
 @model WestServiceIf.Models.DTOs.LoginDto
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Лоігн";
     Layout = "_Layout";
 }
 
-<h2>Title</h2>
-<!-- Views/Account/Login.cshtml -->
-<form asp-controller="Authorization" asp-action="Login" method="post">
-    <input type="email" name="Email" placeholder="Email" />
-    <input type="password" name="Password" placeholder="Password" />
-    <button type="submit">Login</button>
+<form asp-controller="Authorization" asp-action="Login" method="post" class="border p-4">
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email address</label>
+        <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label">Password</label>
+        <input type="password" asp-for="Password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
