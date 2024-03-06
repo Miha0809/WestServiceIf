@@ -40,7 +40,7 @@ public class ProductController(WSIDbContext context) : Controller
     [HttpPost]
     public async Task<IActionResult> Add(Product product, List<IFormFile> images)
     {
-        if (ModelState.IsValid && ValidateCompanyOnError(product))
+        if (ModelState.IsValid && !ValidateCompanyOnError(product))
         {
             foreach (var imageFile in images)
             {
@@ -78,7 +78,7 @@ public class ProductController(WSIDbContext context) : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(Product model,  List<IFormFile> newImages, List<int> deleteImages)
+    public async Task<IActionResult> Edit(Product model, List<IFormFile> images, List<int> deleteImages)
     {
         if (ValidateCompanyOnError(model))
         {
@@ -99,9 +99,9 @@ public class ProductController(WSIDbContext context) : Controller
                 product.Title = model.Title;
                 product.Description = model.Description;
 
-                if (newImages != null && newImages.Any())
+                if (images != null && images.Any())
                 {
-                    foreach (var file in newImages)
+                    foreach (var file in images)
                     {
                         using (var memoryStream = new MemoryStream())
                         {
