@@ -1,7 +1,9 @@
 @model Product
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer ViewLocalizer
 
 @{
-    ViewBag.Title = "Добавити Продукт";
+    ViewBag.Title = ViewLocalizer["Title"];
     Layout = "_Layout";
 }
 
@@ -11,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <div class="mb-3">
-                    <label asp-for="Title" class="control-label">Заголовок</label>
+                    <label asp-for="Title" class="control-label">@ViewLocalizer["Header"]</label>
                     <input asp-for="Title" class="form-control"/>
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
@@ -19,7 +21,7 @@
             
             <div class="form-group">
                 <div class="mb-3">
-                    <label asp-for="Description" class="control-label">Опис товару</label>
+                    <label asp-for="Description" class="control-label">@ViewLocalizer["DescriptionPart"]</label>
                     <textarea asp-for="Description" class="form-control"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
@@ -28,15 +30,15 @@
                 <div class="input-group">
                     <label class="input-group-btn">
                         <span class="btn btn-primary">
-                            Обрати файли<input type="file" asp-for="Images" class="form-control-file" multiple style="display: none;" onchange="updateFileCount(this)" />
+                            @ViewLocalizer["SelectImages"]<input type="file" asp-for="Images" class="form-control-file" multiple style="display: none;" onchange="updateFileCount(this)" />
                         </span>
                     </label>
                     <input type="text" class="form-control" readonly />
                 </div>
             </div>
             <div class="form-group text-center mt-3">
-                <input type="submit" value="Добавити" class="btn btn-primary" />
-                <a asp-controller="Product" asp-action="Products" class="btn btn-secondary">Вернутись до продуктів</a>
+                <button type="submit" class="btn btn-primary">@ViewLocalizer["Add"]</button>
+                <a asp-controller="Product" asp-action="Products" class="btn btn-secondary">@ViewLocalizer["AllParts"]</a>
             </div>
         </form>
     </div>
@@ -47,7 +49,7 @@
         var fileCount = input.files.length;
         var fileName = input.files[0].name; // Якщо потрібно показувати ім'я першого файлу
 
-        var displayText = fileCount > 0 ? fileCount + ' файлів обрано' : 'Обрати файли';
+        var displayText = fileCount > 0 ? fileCount + ' @ViewLocalizer["Selected"]' : '@ViewLocalizer["Select"]';
         if (fileCount === 1) {
             displayText = fileName; // Якщо потрібно показувати ім'я першого файлу
         }

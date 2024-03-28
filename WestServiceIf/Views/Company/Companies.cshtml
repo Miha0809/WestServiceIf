@@ -1,7 +1,9 @@
 @model List<Company>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer ViewLocalizer
 
 @{
-    ViewBag.Title = "Компанії";
+    ViewBag.Title = ViewLocalizer["Title"];
     Layout = "_Layout";
 }
 
@@ -9,14 +11,14 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="card mb-3">
+            <div class="card w-100 mb-3">
               <div class="card-body">
                 <h5 class="card-title">@item.Name</h5>
                 <p class="card-text">@item.Description</p>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a class="btn btn-primary" asp-controller="Company" asp-action="Edit" asp-route-id="@item.Id">Редагувати</a>
-                    <a class="btn btn-primary" asp-controller="Company" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Delete?')">Видалити</a>
+                    <a class="btn btn-primary" asp-controller="Company" asp-action="Edit" asp-route-id="@item.Id">@ViewLocalizer["Edit"]</a>
+                    <a class="btn btn-primary" asp-controller="Company" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Видалити?')">@ViewLocalizer["Delete"]</a>
                 }
               </div>
             </div>

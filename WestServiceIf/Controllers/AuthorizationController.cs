@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using WestServiceIf.Models.DTOs;
 
 namespace WestServiceIf.Controllers;
 
-public class AuthorizationController(SignInManager<IdentityUser> signInManager) : Controller
+public class AuthorizationController(SignInManager<IdentityUser> signInManager, IStringLocalizer<AuthorizationController> localizer) : Controller
 {
     [HttpGet]
     public IActionResult Login()
@@ -18,7 +19,7 @@ public class AuthorizationController(SignInManager<IdentityUser> signInManager) 
     {
         if (login.Email is null || login.Password is null)
         {
-            return NotFound("Емейл або пароль не введені");
+            return NotFound(localizer["Error"]);
         }
         
         var result = await signInManager.PasswordSignInAsync(login.Email, login.Password, isPersistent: false, lockoutOnFailure: false);
@@ -28,7 +29,7 @@ public class AuthorizationController(SignInManager<IdentityUser> signInManager) 
             return RedirectToAction("Products", "Product");
         }
 
-        return NotFound("Емейл або пароль не коректний");
+        return NotFound(localizer["Error"]);
     }
 
     [Authorize]

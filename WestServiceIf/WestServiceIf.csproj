@@ -28,4 +28,418 @@
       <Folder Include="wwwroot\Files\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Controllers\AuthorizationController.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AuthorizationController.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Controllers\AuthorizationController.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AuthorizationController.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Controllers\AuthorizationController.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AuthorizationController.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Shared\_Layout.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>_Layout.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Shared\_Layout.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>_Layout.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Shared\_Layout.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>_Layout.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Controllers\ProductController.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ProductController.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Controllers\ProductController.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ProductController.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Controllers\ProductController.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ProductController.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Authorization\Login.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Authorization.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Authorization\Login.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Authorization.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Authorization\Login.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Authorization.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Add.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Add.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Add.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Add.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Add.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Add.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Companie.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Companie.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Companie.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Companie.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Companie.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Companie.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Edit.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Edit.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Edit.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Edit.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Edit.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Edit.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Home\AboutProduction.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AboutProduction.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Home\AboutProduction.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AboutProduction.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Home\AboutProduction.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AboutProduction.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Home\AboutUs.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AboutUs.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Home\AboutUs.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AboutUs.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Home\AboutUs.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AboutUs.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Add.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Add.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Add.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Add.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Add.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Add.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Details.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Details.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Details.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Details.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Details.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Details.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Shared\_Layout.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>_Layout.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Details.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Details.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Edit.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Edit.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Edit.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Edit.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Edit.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Edit.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Edit.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Edit.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Products.uk.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Products.uk.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Products.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Products.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Products.de.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Products.de.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Product\Products.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Products.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Home\AboutProduction.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AboutProduction.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Home\AboutUs.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AboutUs.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Company\Edit.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Edit.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Views\Authorization\Login.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Login.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\Controllers\AuthorizationController.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AuthorizationController.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Controllers\AuthorizationController.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AuthorizationController.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Controllers\AuthorizationController.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AuthorizationController.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Shared\_Layout.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>_Layout.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Shared\_Layout.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>_Layout.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Shared\_Layout.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>_Layout.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Controllers\ProductController.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ProductController.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Controllers\ProductController.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ProductController.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Controllers\ProductController.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ProductController.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Add.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Add.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Add.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Add.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Add.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Add.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Companie.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Companie.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Companie.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Companie.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Companie.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Companie.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Edit.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Edit.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Edit.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Edit.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Edit.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Edit.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Home\AboutProduction.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AboutProduction.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Home\AboutProduction.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AboutProduction.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Home\AboutProduction.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AboutProduction.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Home\AboutUs.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AboutUs.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Home\AboutUs.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AboutUs.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Home\AboutUs.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AboutUs.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Add.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Add.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Add.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Add.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Add.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Add.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Details.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Details.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Details.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Details.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Details.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Details.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Shared\_Layout.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>_Layout.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Details.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Details.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Edit.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Edit.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Edit.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Edit.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Edit.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Edit.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Edit.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Edit.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Products.uk.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Products.uk.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Products.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Products.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Products.de.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Products.de.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Product\Products.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Products.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Home\AboutProduction.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AboutProduction.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Home\AboutUs.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AboutUs.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Company\Edit.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Edit.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Views\Authorization\Login.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Login.fr.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>

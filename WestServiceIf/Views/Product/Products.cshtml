@@ -1,7 +1,9 @@
 @model List<Product>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer ViewLocalizer
 
 @{
-    ViewBag.Title = "Деталі";
+    ViewBag.Title = ViewLocalizer["Title"];
     Layout = "_Layout";
 }
 
@@ -20,24 +22,24 @@
         @foreach (var item in Model)
         {
             <div class="col-12 col-md-4 mb-4">
-                <div class="card d-flex" style="height: 350px;">
+                <div class="card" style="height: 350px;">
                     @if (item.Images != null && item.Images.Count > 0)
                     {
                         <img src="data:image;base64,@(Convert.ToBase64String(item.Images[0].ImageData))" alt="@item.Images[0].FileName" class="card-img-top img-fluid" style="object-fit: cover; height: 200px;">
                     }
                     else
                     {
-                        <div class="no-image d-flex justify-content-center align-items-center">
-                            <p>Картинки немає</p>
+                        <div class="no-image d-flex justify-content-center align-items-center" style="height: 200px; overflow: hidden;">
+                            <p>@ViewLocalizer["NoImage"]</p>
                         </div>
                     }
                     <div class="card-body">
                         <h5 class="card-title">@item.Title</h5>
-                        <p class="card-text">@item.Description</p>
-                        <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">Деталі</a>
+                        <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.Description</p>
+                        <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">@ViewLocalizer["Details"]</a>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class="btn btn-primary" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Delete?')">Видалити</a>
+                            <a class="btn btn-primary" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Видалити?')">@ViewLocalizer["Delete"]</a>
                         }
                     </div>
                 </div>
@@ -45,3 +47,4 @@
         }
     </div>
 </div>
+

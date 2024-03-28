@@ -1,18 +1,20 @@
 @model WestServiceIf.Models.DTOs.LoginDto
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer ViewLocalizer
 
 @{
-    ViewBag.Title = "Лоігн";
+    ViewBag.Title = ViewLocalizer["Title"];
     Layout = "_Layout";
 }
 
 <form asp-controller="Authorization" asp-action="Login" method="post" class="border p-4">
     <div class="mb-3">
-        <label asp-for="Email" class="form-label">Електронна пошта</label>
+        <label asp-for="Email" class="form-label">@ViewLocalizer["Email"]</label>
         <input type="email" asp-for="Email" class="form-control">
     </div>
     <div class="mb-3">
-        <label asp-for="Password" class="form-label">Пароль</label>
+        <label asp-for="Password" class="form-label">@ViewLocalizer["Password"]</label>
         <input type="password" asp-for="Password" class="form-control">
     </div>
-    <button type="submit" class="btn btn-primary">Ввійти</button>
+    <button type="submit" class="btn btn-primary">@ViewLocalizer["Submit"]</button>
 </form>
